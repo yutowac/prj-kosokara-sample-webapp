@@ -1,0 +1,19 @@
+{
+  "name": "countup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "login": "firebase login",
+    "init": "firebase init",
+    "dev": "firebase emulators:start",
+    "deploy": "firebase deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.9.0",
+    "firebase-tools": "^13.5.1"
+  }
+}

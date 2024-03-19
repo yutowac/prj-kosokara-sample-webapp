@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/10.9.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/10.9.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/10.9.0/firebase-performance-compat.js"></script>
+    <!--
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <!-- <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      [data-is-on] {
+        font-size: 80px;
+        background: radial-gradient(#FAFAFA, #E0E0E0);
+      }
+
+      [data-is-on]::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        content: '';
+        background: radial-gradient(#424242, #212121);
+        transition: opacity .2s ease-in-out;
+      }
+
+      [data-is-on='true']::before {
+        opacity: 0;
+      }
+
+      [data-is-on='true'] dt {
+        opacity: 1;
+      }
+
+      [data-is-on='true'] #btn-on {
+        display: none;
+      }
+
+      [data-is-on='false']::before {
+        opacity: 1;
+      }
+
+      [data-is-on='false'] dt {
+        opacity: .2;
+      }
+
+      [data-is-on='false'] #btn-off {
+        display: none;
+      }
+
+      dl {
+        position: relative;
+      }
+
+      dd {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      button {
+        padding: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style> -->
+  </head>
+  <body>
+    <div id="title">Demo版　こそカラWebサイト</div>
+    <div class="voiceCnt">
+      <div>🐱さんの歌声-01</div>
+      <div id="player" class="player">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/w0kGp_2XNqo" title="2024年3月19日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/aBUvDzyKvjY?si=GS8HUXvCnaWz9Sik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+      </div>
+
+      <div data-is-on="false">
+        <!-- <dl>
+          <dt></dt>
+          <dd> -->
+            <!-- <div>
+              <button id="btn-on">ON</button>
+              <button id="btn-off">OFF</button>
+            </div> -->
+            <div class="judgeCnt">
+              <div class="balloons">
+                <div id="cnt-ballon-good" class="sample-balloon"></div>
+                <div id="cnt-ballon-bad" class="sample-balloon"></div>
+              </div>
+              <br>
+              <div class="btns">
+                <button id="btn-good" class="judgeBtn">カラオケ行って大丈夫！</button>
+                <button id="btn-bad" class="judgeBtn bad">カラオケ行くのまだ早い！</button>
+              </div>
+            </div>
+          <!-- </dd>
+        </dl> -->
+      </div>
+      <div class="meter">
+        <meter value="0.5" min="0" max="1">0%</meter>
+      </div>
+    </div>
+
+    <div class="voiceCnt">
+      <div>😎さんの歌声-02</div>
+      <div class="player">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ofFaNGMOaFg" title="2024年3月19日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/w0kGp_2XNqo" title="2024年3月19日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="<iframe width="396" height="704" src="https://www.youtube.com/embed/w0kGp_2XNqo" title="2024年3月19日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+      </div>
+
+      <div data-is-on="false">
+            <div class="judgeCnt">
+              <div class="balloons">
+                <div class="sample-balloon">0</div>
+                <div class="sample-balloon">0</div>
+              </div>
+              <br>
+              <div class="btns">
+                <button class="judgeBtn">カラオケ行って大丈夫！</button>
+                <button class="judgeBtn bad">カラオケ行くのまだ早い！</button>
+              </div>
+            </div>
+      </div>
+      <div class="meter">
+        <meter id="meter" value="0.5" min="0" max="1">0%</meter>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth',
+            'database',
+            'firestore',
+            'functions',
+            'messaging',
+            'storage',
+            'analytics',
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+
+
+          // firebase.auth().signInAnonymously().then(async () => {
+            (async () => {
+            const db = firebase.firestore(app);
+            // const isOnRef = await db.doc('led/isOn');
+            // const isOnDoc = await isOnRef.get();
+            // const isOnElm = document.querySelector('[data-is-on]');
+            // const btnOn = document.getElementById('btn-on');
+            // const btnOff = document.getElementById('btn-off');
+
+            const goodbtnRef = await db.doc('goodbtn/goodbtn');
+            const goodbtnDoc = await goodbtnRef.get();
+            const goodbtnElm = document.getElementById('btn-good');
+            const goodcntElm = document.getElementById('cnt-ballon-good');
+            let n_good = goodbtnDoc.data().value;
+            // goodbtnElm.textContent = n_good;
+            goodbtnElm.textContent='カラオケ行って大丈夫！';
+
+            const badbtnRef = await db.doc('badbtn/badbtn');
+            const badbtnDoc = await badbtnRef.get();
+            const badbtnElm = document.getElementById('btn-bad');
+            const badcntElm = document.getElementById('cnt-ballon-bad');
+            let n_bad = badbtnDoc.data().value;
+            // badbtnElm.textContent = n_bad;
+            badbtnElm.textContent='カラオケ行くのまだ早い！';
+            const meterRef = await db.doc('meter/meter');
+            const meterDoc = await meterRef.get();
+            const meterElm = document.getElementById('meter');
+            let n_meter = meterDoc.data().value;
+            meterElm.value = n_meter;
+
+            // isOnRef.onSnapshot((doc) => {
+            //   if (doc.data()) {
+            //     isOnElm.dataset.isOn = doc.data().value;
+            //   }
+            // });
+            // btnOn.addEventListener('click', async () => {
+            //     if (isOnDoc.exists) {
+            //       await isOnRef.set({ value: true });
+            //     }
+            // });
+
+            // btnOff.addEventListener('click', async () => {
+            //   if (isOnDoc.exists) {
+            //     await isOnRef.set({ value: false });
+            //   }
+            // });
+            goodbtnRef.onSnapshot((doc) => {
+              if (doc.data()) {
+                goodcntElm.textContent = n_good = String(doc.data().value || 1);
+                n_meter =(Number(n_good)/(Number(n_good)+Number(n_bad))).toFixed(3)
+                meterElm.value = n_meter;
+              }
+            });
+            goodbtnElm.addEventListener('click', async () => {
+              if (goodbtnDoc.exists) {
+                n_good++;
+                n_meter =(Number(n_good)/(Number(n_good)+Number(n_bad))).toFixed(3)
+                await goodbtnRef.set({ value: n_good });
+                await meterRef.set({ value: n_meter });
+              }
+            });
+            badbtnRef.onSnapshot((doc) => {
+              if (doc.data()) {
+                badcntElm.textContent = n_bad = String(doc.data().value || 0);
+                n_meter =(Number(n_good)/(Number(n_good)+Number(n_bad))).toFixed(3)
+                meterElm.value = n_meter;
+              }
+            });
+            badbtnElm.addEventListener('click', async () => {
+              if (badbtnDoc.exists) {
+                n_bad++;
+                n_meter =(Number(n_good)/(Number(n_good)+Number(n_bad))).toFixed(3)
+                await badbtnRef.set({ value: n_bad });
+                await meterRef.set({ value: n_meter });
+              }
+            });
+            meterRef.onSnapshot((doc) => {
+              if (doc.data()) {
+                n_meter =(Number(n_good)/(Number(n_good)+Number(n_bad))).toFixed(3)
+                meterElm.value = n_meter;
+              }
+            });
+
+            // meterElm.addEventListener('click', async () => {
+            //   if (meterDoc.exists) {
+            //     n_bad++;
+            //     await meterRef.set({ value: n_bad });
+            //     // meterElm.textContent='カラオケ行って　大丈夫！';
+            //   }
+            // });
+          })();
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>
